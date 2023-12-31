@@ -398,3 +398,81 @@ u = a1v1 + a2v2 + ... + anvn
 
 - 基底点：O + ux, O + uy, O + uz, 即 `(1, 0, 0)`、`(0, 1, 0)`、`(0, 0, 1)`
 - 如果存在一点 Q 使得：Q = a1P1 + a2P2 + a3P3（P1、P2、P3 是基底点），并且 a1 + a2 + a3 = 1，则 Q 是坐标系的重心坐标点。
+
+## C4.矩阵、向量代数和变换
+
+### 点、向量和坐标系的矩阵表示
+
+详见：[坐标系、点和向量的矩阵表示](http://pengfeixc.com/blogs/computer-graphics/matrix-stand-for-vectors-points.html)
+
+向量的矩阵表示：`[a1 a2  ... an 0]`
+
+点的矩阵表示：`[a1 a2 ... an 1]`
+
+### 加法、减法、乘法
+
+1、向量加法、减法
+
+u + v = [u1 u2 u3 0] + [v1 v2 v3 0] = [u1+v1 u2+v2 u3+v3 0]
+
+2、点和向量的加法和减法
+
+P + v = [p1 p2 p3 1] + [u1 u2 u3 0] = [p1+u1 p2+u2 p3+u3 1]
+
+3、点的减法
+
+P - Q = [p1 p2 p3 1] - [q1 q2 q3 1] = [p1-q1 p2-q2 p3-q3 0]
+
+4、数乘
+
+向量与数 a 相乘，用矩阵表示。
+
+av = a[v1 v2 v3 0] = [av1 av2 av3 0]
+
+### 向量乘积
+
+#### 点积
+
+向量 u(u1,u2,u3) 和 v(v1,v2,v3) 的夹角为 a，它们的点积：
+
+- u·v = |u||v|cosa
+- u·v = u1v1 + u2v2 + u3v3
+
+![点积公式计算](./images/023.jpg)
+
+#### 叉积
+
+u x v = [u2v3-u3v2 u3v1-u1v3 u1v2-u2v1 0]
+
+可以使用行列式的方式计算叉积的结果。
+
+叉积等于下面的行列式结果，i、j、k 为三个基底向量。
+```
+i  j  k
+u1 u2 u3
+v1 v2 v3
+```
+
+#### 张量积
+
+三个向量 u、v、w，它们的张量积为：(u·v)w，结果是一个 w 方向的向量，因为 u 和 v 的点积是一个数。
+
+### 向量几何和仿射变换
+
+- [3D 图形学中的矩阵变换一](http://pengfeixc.com/blogs/computer-graphics/3D-matrix-transformation-part-one.html)
+- [3D 图形学中的矩阵变换二](http://pengfeixc.com/blogs/computer-graphics/3D-matrix-transformation-part-two.html)
+- [3D 图形学中的矩阵变换三](http://pengfeixc.com/blogs/computer-graphics/3D-matrix-transformation-part-three.html)
+
+#### 反射
+
+反射是一种相对于一条直线（在二维空间中）或一个平面（在三维空间中）的镜像点的变换。
+
+![反射变换](./images/024)
+
+#### 剪切变换
+
+剪切变换，又称“错切变换”，是仿射变换的一种原始变换，指的是类似于四边形不稳定性那种性质，方形变平行四边形，任意一边都可以被拉长的过程。
+
+### 投影
+
+投影是一类具有如下性质的变换，即将点从一个 n 维坐标系变换到另一个维数小于 n 的坐标系中。投影变换在图形学中最重要的应用是用于图形显示系统和工具库的管道着色，三维物体在着色和显示在终端屏幕上之前先被投影到一个平面中。
